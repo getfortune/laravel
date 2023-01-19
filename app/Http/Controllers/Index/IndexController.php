@@ -8,6 +8,6 @@ use Illuminate\Http\Request;
 class IndexController extends Controller
 {
     function index(){
-        return ['data'=>'success'];
+        return $this->success('success');
     }
 }
