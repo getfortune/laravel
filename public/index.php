@@ -1,8 +1,8 @@
 <?php
-
+// laravel 的入口文件
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
-
+// 定义常量
 define('LARAVEL_START', microtime(true));
 
 /*
@@ -15,7 +15,7 @@ define('LARAVEL_START', microtime(true));
 | instead of starting the framework, which could cause an exception.
 |
 */
-
+// 文档的目录，检查文件是否存在
 if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php')) {
     require $maintenance;
 }
@@ -30,7 +30,7 @@ if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php'))
 | into the script here so we don't need to manually load our classes.
 |
 */
-
+// 自动加载类
 require __DIR__.'/../vendor/autoload.php';
 
 /*
@@ -43,13 +43,14 @@ require __DIR__.'/../vendor/autoload.php';
 | to this client's browser, allowing them to enjoy our application.
 |
 */
-
+// 注册http 请求
 $app = require_once __DIR__.'/../bootstrap/app.php';
-
+// 生成请求
 $kernel = $app->make(Kernel::class);
 
 $response = $kernel->handle(
+// 处理请求
     $request = Request::capture()
 )->send();
-
+// 返回请求
 $kernel->terminate($request, $response);

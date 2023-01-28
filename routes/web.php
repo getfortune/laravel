@@ -1,6 +1,8 @@
 <?php
 
+use App\Events\RegisterOk;
 use App\Http\Controllers\Index\IndexController;
+use App\Repository\Eloquent\UserRepository;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,5 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/index',[IndexController::class,'index']);
 Route::get('/', function () {
-    return view('welcome');
+    $user = new UserRepository();
+    $user->login(123,123);
+    event(new RegisterOk($user));
 });

@@ -14,7 +14,7 @@ return [
     | not explicitly specified when executing a given caching function.
     |
     */
-
+    // 设置缓存存储驱动方式
     'default' => env('CACHE_DRIVER', 'file'),
 
     /*
@@ -30,7 +30,11 @@ return [
     |         "memcached", "redis", "dynamodb", "octane", "null"
     |
     */
-
+    // 驱动信息
+    /*
+    | 可以在一个项目中使用多个驱动
+    |  使用Cache::store('驱动名')->..使用
+    */
     'stores' => [
 
         'apc' => [

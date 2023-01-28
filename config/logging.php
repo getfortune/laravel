@@ -1,5 +1,5 @@
 <?php
-
+// 日志配置文件
 use Monolog\Handler\NullHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\SyslogUdpHandler;
@@ -50,7 +50,7 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single'],
+            'channels' => ['daily'], // 此时会将日志按照日来进行划分
             'ignore_exceptions' => false,
         ],
 
