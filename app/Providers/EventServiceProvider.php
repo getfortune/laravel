@@ -6,6 +6,7 @@ use App\Events\RegisterOk;
 use App\Listeners\SendMessage;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
+use Illuminate\Database\Events\StatementPrepared;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
 
@@ -33,6 +34,11 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        //数据查询统一返回为数组
+        Event::listen(StatementPrepared::class, function (StatementPrepared $event) {
+            $event->statement->setFetchMode(\PDO::FETCH_ASSOC);
+        });
+
 //        //
 //        # 在 boot 方法里，以闭包方式注册
 //        // event('event.name', $user);

@@ -14,6 +14,7 @@ class BroadcastServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // 注册 /broadcasting/auth 到路由去处理授权请求
         Broadcast::routes();
 
         require base_path('routes/channels.php');

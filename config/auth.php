@@ -13,6 +13,7 @@ return [
     |
     */
 
+    //验证的默认值
     'defaults' => [
         'guard' => 'web',
         'passwords' => 'users',
@@ -35,6 +36,7 @@ return [
     |
     */
 
+    // 角色验证
     'guards' => [
         'web' => [
             'driver' => 'session',
@@ -59,6 +61,7 @@ return [
     |
     */
 
+    // 表的模型
     'providers' => [
         'users' => [
             'driver' => 'eloquent',

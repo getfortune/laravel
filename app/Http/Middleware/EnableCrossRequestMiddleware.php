@@ -27,6 +27,7 @@ class EnableCrossRequestMiddleware
         ];
         if (in_array($origin, $allow_origin)) {
             $response->header('Access-Control-Allow-Origin',$origin);
+            // 请求头只能添加这些属性
             $response->header('Access-Control-Allow-Headers', 'Origin, Content-Type, Cookie, X-CSRF-TOKEN, Accept, Authorization, X-XSRF-TOKEN');
             $response->header('Access-Control-Expose-Headers', 'Authorization, authenticated');
             $response->header('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, OPTIONS');

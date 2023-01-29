@@ -25,6 +25,16 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        $this->registerRequestRebindHandler();
         //
+    }
+
+    protected function registerRequestRebindHandler()
+    {
+        $this->app->rebinding('request', function ($app, $request) {
+            $request->setUserResolver(function ($guard = null) use ($app) {
+                return call_user_func($app['auth']->userResolver(), $guard);
+            });
+        });
     }
 }
