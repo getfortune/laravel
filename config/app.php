@@ -171,7 +171,7 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\BroadcastServiceProvider::class, // 开启广播服务提供者
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 

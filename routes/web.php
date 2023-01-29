@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\Free;
 use App\Events\RegisterOk;
 use App\Http\Controllers\Index\IndexController;
 use App\Repository\Eloquent\UserRepository;
@@ -17,8 +18,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/index',[IndexController::class,'index']);
+// 事件
 Route::get('/', function () {
-    $user = new UserRepository();
-    $user->login(123,123);
-    event(new RegisterOk($user));
+//    $user = new UserRepository();
+//    $user->login(123,123);
+//    event(new RegisterOk($user));
+    view('welcome');
+});
+
+// 广播的使用
+Route::get('/event',function (){
+    broadcast(new Free('广播开始了'));
 });
