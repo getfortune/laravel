@@ -26,7 +26,7 @@ Route::any('/3', [UserController::class,'login']);
 Route::group(['middleware' => ['auth:api']],function() {
     // 私有广播的使用
     Route::post('/private',function (){
-        event(new Prize('私有广播'));
+        event(new Prize('3002'));
     });
 });
 Route::get('/8',function (){

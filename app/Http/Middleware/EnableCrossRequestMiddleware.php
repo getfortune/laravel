@@ -23,7 +23,9 @@ class EnableCrossRequestMiddleware
         $allow_origin = [
             'http://localhost:3000', // 前端项目的地址
             'http://127.0.0.1:3000',  // localhost 和 127.0.0.1 有区别暂时还不知道为什么。
-            'http://vue3-vite-pjt.cm'
+            'http://127.0.0.1:3001',
+            'http://vue3-vite-pjt.cm',
+            'http://school-pj.cm'
         ];
         if (in_array($origin, $allow_origin)) {
             $response->header('Access-Control-Allow-Origin',$origin);
