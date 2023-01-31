@@ -2,8 +2,9 @@
 
 namespace App\Providers;
 
+use Carbon\Carbon;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Gate;
+use Laravel\Passport\Passport;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -24,17 +25,7 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-
-        $this->registerRequestRebindHandler();
-        //
-    }
-
-    protected function registerRequestRebindHandler()
-    {
-        $this->app->rebinding('request', function ($app, $request) {
-            $request->setUserResolver(function ($guard = null) use ($app) {
-                return call_user_func($app['auth']->userResolver(), $guard);
-            });
-        });
+        // 设置token 的有效期 默认是一年
+        Passport::tokensExpireIn(Carbon::now()->addMonthNoOverflow(1));
     }
 }

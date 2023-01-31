@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     //
     public function login() {
-        $a = auth()->loginUsingId(3);
+        $user = User::where('id','=',3)->first();
+        $token = $user->createToken('user')->accessToken;
 
-        return csrf_token();
+        return ['token' => $token];
     }
 }

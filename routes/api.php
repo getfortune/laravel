@@ -1,5 +1,7 @@
 <?php
 
+use App\Events\Prize;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +18,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+// laravel 路由快速登录
+Route::any('/3', [UserController::class,'login']);
+
+Route::group(['middleware' => ['auth:api']],function() {
+    // 私有广播的使用
+    Route::post('/private',function (){
+        event(new Prize('私有广播'));
+    });
+});
+Route::get('/8',function (){
+    auth()->loginUsingId(8);
 });

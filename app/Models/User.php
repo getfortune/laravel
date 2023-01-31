@@ -6,7 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -51,5 +51,24 @@ class User extends Authenticatable
 //        'email_verified_at' => 'datetime',
 //    ];
 
+// 为了方便测试目前用户验证用户名和密码都是使用的id
+    /**
+     * Passport find by username
+     * @param $id
+     * @return mixed
+     */
+    public function findForPassport($id)
+    {
+        return $this->find(['id' => $id]);
+    }
 
+    /**
+     * Passport custom password valid
+     * @param $id
+     * @return bool
+     */
+    public function validateForPassportPasswordGrant($id)
+    {
+        return $this->$id == $id;
+    }
 }

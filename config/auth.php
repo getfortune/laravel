@@ -42,6 +42,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'api' => [
+            'driver' => 'passport',
+            'provider' => 'users',
+        ],
     ],
 
     /*
@@ -112,3 +116,12 @@ return [
     'password_timeout' => 10800,
 
 ];
+
+/*
+ Client ID: 1
+Client secret: BT7PPoqBuonT7q3oW40NnU19lzzSEgQ7IjmkipJZ
+Password grant client created successfully.
+Client ID: 2
+Client secret: cWzmaV4uRHPJsolMO3RRxTPyKdhK01c0suUJq4h1
+
+ */

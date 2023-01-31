@@ -4,9 +4,6 @@ use App\Events\Free;
 use App\Events\Prize;
 use App\Events\RegisterOk;
 use App\Http\Controllers\Index\IndexController;
-use App\Http\Controllers\UserController;
-use App\Repository\Eloquent\UserRepository;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,18 +26,7 @@ Route::get('/', function () {
     view('welcome');
 });
 
-// laravel 路由快速登录
-Route::any('/3', [UserController::class,'login']);
-Route::get('/8',function (){
-   auth()->loginUsingId(8);
-});
-
 // 公共广播的使用
 Route::get('/event',function (){
     broadcast(new Free('广播开始了'));
-});
-
-// 私有广播的使用
-Route::get('/private',function (){
-    event(new Prize('私有广播'));
 });
